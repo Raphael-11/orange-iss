@@ -1,0 +1,101 @@
+// ═══════════════════════════════════════════════════
+// ISS Orange — Premium Design System
+// Dark Mode · Glassmorphism · Liquid Glass · Pro UI
+// ═══════════════════════════════════════════════════
+
+// ── Brand (Professional Orange) ──
+$orange-primary: #ff7900;
+$orange-light: #ff9a40;
+$orange-dark: #e06800;
+$orange-darker: #c55a00;
+$orange-glow: rgba(255, 121, 0, 0.35);
+$orange-subtle: rgba(255, 121, 0, 0.08);
+$orange-gradient: linear-gradient(135deg, #ff7900 0%, #ff9a40 100%);
+$orange-gradient-dark: linear-gradient(135deg, #e06800 0%, #ff7900 100%);
+$orange-gradient-vibrant: linear-gradient(135deg, #ff9a40 0%, #ff7900 50%, #e06800 100%);
+
+// ── Neutrals (High Contrast Professional) ──
+$white: #ffffff;
+$black: #0a0a0a;
+$gray-50:  #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #e5e5e5;
+$gray-300: #d4d4d4;
+$gray-400: #a3a3a3;
+$gray-500: #737373;
+$gray-600: #525252;
+$gray-700: #404040;
+$gray-800: #262626;
+$gray-900: #171717;
+$gray-950: #0a0a0a;
+
+// ── Accents ──
+$success: #10b981;
+$success-light: rgba(16, 185, 129, 0.12);
+$info: #3b82f6;
+$info-light: rgba(59, 130, 246, 0.12);
+$warning: #f59e0b;
+$warning-light: rgba(245, 158, 11, 0.12);
+$danger: #ef4444;
+$danger-light: rgba(239, 68, 68, 0.12);
+
+// ── Typography ──
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+$font-family-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+$font-family-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+$letter-spacing-normal: -0.01em;
+$letter-spacing-tight: -0.02em;
+
+// ── Spacing ──
+$spacer: 1rem;
+
+// ── Radius (Apple-like rounded) ──
+$radius-sm: 8px;
+$radius: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+$radius-2xl: 24px;
+$radius-full: 9999px;
+$border-radius: $radius;
+$border-radius-lg: $radius-lg;
+$border-radius-sm: $radius-sm;
+
+// ── Glass (Professional Glassmorphism) ──
+$glass-bg: rgba(255, 255, 255, 0.65);
+$glass-bg-strong: rgba(255, 255, 255, 0.88);
+$glass-bg-medium: rgba(255, 255, 255, 0.75);
+$glass-bg-light: rgba(255, 255, 255, 0.45);
+$glass-bg-dark: rgba(10, 10, 10, 0.75);
+$glass-border: rgba(255, 255, 255, 0.25);
+$glass-border-strong: rgba(255, 255, 255, 0.4);
+$glass-blur: 24px;
+$glass-blur-heavy: 48px;
+$glass-blur-subtle: 12px;
+
+// ── Shadows ──
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+$shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+$shadow-glow: 0 0 40px rgba(255, 121, 0, 0.15);
+$shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+$box-shadow-sm: $shadow-sm;
+$box-shadow: $shadow;
+$box-shadow-lg: $shadow-lg;
+
+// ── Transitions ──
+$transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ── Breakpoints ──
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-xxl: 1536px;
