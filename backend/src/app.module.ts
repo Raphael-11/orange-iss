@@ -24,19 +24,26 @@ import { RolesGuard } from './common/guards/roles.guard';
     // Database connection using TypeORM
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DATABASE_HOST', 'localhost'),
-        port: configService.get('DATABASE_PORT', 5432),
-        username: configService.get('DATABASE_USER', 'iss_user'),
-        password: configService.get('DATABASE_PASSWORD'),
-        database: configService.get('DATABASE_NAME', 'iss_orange'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: configService.get('NODE_ENV') !== 'production', // Auto-sync in development only
-        logging: configService.get('NODE_ENV') === 'development', // Enable logging in development
-        migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-        migrationsRun: false, // Run migrations manually
-      }),
+      useFactory: (configService: ConfigService) => {
+        const dbHost = configService.get('DATABASE_HOST', 'localhost');
+        return {
+          type: 'postgres',
+          host: dbHost,
+          port: configService.get('DATABASE_PORT', 5432),
+          username: configService.get('DATABASE_USER', 'iss_user'),
+          password: configService.get('DATABASE_PASSWORD'),
+          database: configService.get('DATABASE_NAME', 'iss_orange'),
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          synchronize: configService.get('NODE_ENV') !== 'production', // Auto-sync in development only
+          logging: configService.get('NODE_ENV') === 'development', // Enable logging in development
+          migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+          migrationsRun: false, // Run migrations manually
+          // SSL configuration for Supabase and other cloud databases
+          ssl: dbHost.includes('supabase.co') 
+            ? { rejectUnauthorized: false } 
+            : false,
+        };
+      },
       inject: [ConfigService],
     }),
 

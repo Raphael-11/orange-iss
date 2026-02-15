@@ -41,13 +41,21 @@ Orange_iss/
 
 ### Prerequisites
 - Node.js 18+
-- PostgreSQL 14+
+- Supabase account (database provided)
 
-### 1. Setup Database
-```sql
-CREATE DATABASE iss_orange;
-CREATE USER iss_user WITH PASSWORD 'changeme';
-GRANT ALL PRIVILEGES ON DATABASE iss_orange TO iss_user;
+### 1. Setup Database Connection
+
+**Get your Supabase database password:**
+1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
+2. Select your project
+3. Go to **Settings** > **Database**
+4. Find your database password (you set this when creating the project)
+
+**Update backend/.env file:**
+```bash
+cd backend
+# The .env file is already configured, just update the password:
+DATABASE_PASSWORD=YOUR_SUPABASE_PASSWORD_HERE
 ```
 
 ### 2. Start Backend

@@ -36,13 +36,14 @@ export interface LoginCredentials {
 
 /**
  * Registration data interface
+ * Role is automatically set to STUDENT on backend
  */
 export interface RegisterData {
   email: string;
   password: string;
   firstName: string;
   lastName: string;
-  role: UserRole;
+  // role is not sent - backend automatically sets it to STUDENT
 }
 
 /**

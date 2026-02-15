@@ -1,9 +1,9 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from '../../common/enums';
 
 /**
  * DTO for user registration
+ * Only for STUDENT role - other roles are created via database seed
  */
 export class RegisterDto {
   @ApiProperty({
