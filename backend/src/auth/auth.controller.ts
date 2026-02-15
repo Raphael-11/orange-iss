@@ -1,8 +1,8 @@
-import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards, Get, Request as NestRequest } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards, Get, Request as NestRequest, Patch } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
-import { RegisterDto, LoginDto } from './dto';
+import { RegisterDto, LoginDto, ChangePasswordDto } from './dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 /**
@@ -98,5 +98,32 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   getProfile(@NestRequest() req: Request & { user: any }) {
     return req.user;
+  }
+
+  /**
+   * Change password
+   * Requires authentication
+   */
+  @Patch('change-password')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Change user password' })
+  @ApiResponse({
+    status: 200,
+    description: 'Password changed successfully',
+    schema: {
+      example: {
+        message: 'Password changed successfully',
+      },
+    },
+  })
+  @ApiResponse({ status: 400, description: 'Invalid current password or same as new password' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async changePassword(
+    @NestRequest() req: Request & { user: any },
+    @Body() changePasswordDto: ChangePasswordDto,
+  ) {
+    return this.authService.changePassword(req.user.id, changePasswordDto);
   }
 }

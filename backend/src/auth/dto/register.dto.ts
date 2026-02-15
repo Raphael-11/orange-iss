@@ -44,11 +44,6 @@ export class RegisterDto {
   @MinLength(9, { message: 'Password must be longer than 8 characters' })
   password: string;
 
-  @ApiProperty({
-    description: 'User role',
-    enum: UserRole,
-    example: UserRole.STUDENT,
-  })
-  @IsEnum(UserRole)
-  role: UserRole;
+  // Note: Role is automatically set to STUDENT for public registration
+  // Other roles (HR, DEPARTMENT_CHIEF, SUPERVISOR) are created directly in database
 }

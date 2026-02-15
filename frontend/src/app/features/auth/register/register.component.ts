@@ -115,19 +115,6 @@ import { AuthService } from '@core/services/auth.service';
                 <div class="field-error" *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched">Passwords do not match</div>
               </div>
 
-              <div class="form-group">
-                <label class="form-label" for="role">Account Type</label>
-                <div class="role-selector">
-                  <label class="role-option" *ngFor="let r of roles" [class.selected]="registerForm.get('role')?.value === r.value">
-                    <input type="radio" formControlName="role" [value]="r.value" />
-                    <div class="role-card">
-                      <span class="role-emoji">{{ r.icon }}</span>
-                      <span class="role-name">{{ r.label }}</span>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
               <div class="server-error" *ngIf="errorMessage">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                 {{ errorMessage }}
@@ -204,15 +191,6 @@ import { AuthService } from '@core/services/auth.service';
     .strength-text.medium { color: #f59e0b; }
     .strength-text.strong { color: #10b981; }
 
-    .role-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-    .role-option { cursor: pointer; }
-    .role-option input { display: none; }
-    .role-card { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.75rem; border: 1.5px solid #e5e7eb; border-radius: 10px; transition: all 0.2s; background: #f9fafb; }
-    .role-option.selected .role-card { border-color: #ff7900; background: rgba(255,121,0,0.05); box-shadow: 0 0 0 3px rgba(255,121,0,0.08); }
-    .role-card:hover { border-color: #d1d5db; }
-    .role-emoji { font-size: 1.1rem; }
-    .role-name { font-size: 0.8rem; font-weight: 600; color: #374151; }
-
     .field-error { margin-top: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #ef4444; }
 
     .server-error { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; color: #ef4444; font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem; }
@@ -249,21 +227,13 @@ export class RegisterComponent {
   errorMessage = '';
   showPassword = false;
 
-  roles = [
-    { value: 'STUDENT', label: 'Student', icon: '🎓' },
-    { value: 'SUPERVISOR', label: 'Supervisor', icon: '👨‍🏫' },
-    { value: 'DEPARTMENT_CHIEF', label: 'Dept. Chief', icon: '👔' },
-    { value: 'HR', label: 'HR Manager', icon: '📋' }
-  ];
-
   constructor() {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.])[A-Za-z\d@$!%*?&#.]+$/)]],
-      confirmPassword: ['', Validators.required],
-      role: ['STUDENT', Validators.required]
+      confirmPassword: ['', Validators.required]
     }, { validators: this.passwordMatchValidator });
   }
 

@@ -58,7 +58,14 @@ npm run start:dev
 ```
 Backend runs on: **http://localhost:3000**
 
-### 3. Start Frontend
+### 3. Seed Default Users (First Time Only)
+```bash
+cd backend
+npm run seed
+```
+This creates default accounts for HR, Chief, and Supervisor roles.
+
+### 4. Start Frontend
 ```bash
 cd frontend
 npm install
@@ -66,10 +73,24 @@ npm start
 ```
 Frontend runs on: **http://localhost:4200**
 
+## Default Accounts
+
+**Students** can create their own accounts via the Sign Up page.
+
+**Other roles** use these pre-created accounts:
+
+| Role | Email | Password | 
+|------|-------|----------|
+| HR Manager | hr@orange.tn | changeme123 |
+| Department Chief | chief@orange.tn | changeme123 |
+| Supervisor | supervisor@orange.tn | changeme123 |
+
+⚠️ **Change passwords after first login!**
+
 ## Access
 Open browser: **http://localhost:4200**
 
 ## Team
 Nour Benzarti, Farah Marnissi, Raef Lefi, Ilyes Fatnassi, Mohamed Aziz Touhami
 
-**Supervisors:** Dr. Lars E.O. Jacobson, Mrs. Ons Kharrat
+**Supervisors:** dr Asma amdouni, Mrs. Ons Kharrat
