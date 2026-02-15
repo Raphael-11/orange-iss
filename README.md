@@ -41,51 +41,59 @@ Orange_iss/
 
 ### Prerequisites
 - Node.js 18+
-- Supabase account (database provided)
+- Docker Desktop (for database)
 
-### 1. Setup Database Connection
+### Quick Start
 
-**Get your Supabase database password:**
-1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
-2. Select your project
-3. Go to **Settings** > **Database**
-4. Find your database password (you set this when creating the project)
-
-**Update backend/.env file:**
 ```bash
-cd backend
-# The .env file is already configured, just update the password:
-DATABASE_PASSWORD=YOUR_SUPABASE_PASSWORD_HERE
-```
+# 1. Start Database
+docker-compose up -d postgres
 
-### 2. Start Backend
-```bash
+# 2. Start Backend
 cd backend
 npm install
 npm run start:dev
-```
-Backend runs on: **http://localhost:3000**
+npm run seed  # First time only - creates default admin accounts
 
-### 3. Seed Default Users (First Time Only)
-```bash
-cd backend
-npm run seed
-```
-This creates default accounts for HR, Chief, and Supervisor roles.
-
-### 4. Start Frontend
-```bash
+# 3. Start Frontend (new terminal)
 cd frontend
 npm install
 npm start
 ```
-Frontend runs on: **http://localhost:4200**
+
+**Access:**
+- Frontend: http://localhost:4200
+- Backend API: http://localhost:3000/api
+
+### Alternative: Without Docker
+If you don't have Docker, see [DATABASE_SETUP.md](DATABASE_SETUP.md) for local PostgreSQL setup or Supabase cloud database.
+
+---
+
+## View Database
+
+```bash
+# Connect to database
+docker exec -it iss_orange_db psql -U iss_user -d iss_orange
+
+# View tables and data
+\dt                    # List tables
+SELECT * FROM users;   # View users
+\q                     # Exit
+```
+
+Or use pgAdmin/VS Code PostgreSQL extension with:
+- Host: localhost, Port: 5432
+- Database: iss_orange
+- User: iss_user, Password: changeme
+
+---
 
 ## Default Accounts
 
-**Students** can create their own accounts via the Sign Up page.
+**Students** can create accounts via Sign Up page.
 
-**Other roles** use these pre-created accounts:
+**Admin roles** (created by seed script):
 
 | Role | Email | Password | 
 |------|-------|----------|
@@ -95,8 +103,21 @@ Frontend runs on: **http://localhost:4200**
 
 ⚠️ **Change passwords after first login!**
 
-## Access
-Open browser: **http://localhost:4200**
+---
+
+## Docker Commands
+
+```bash
+docker-compose up -d postgres    # Start database
+docker-compose ps                # Check status
+docker-compose logs postgres     # View logs
+docker-compose down              # Stop database
+docker-compose down -v           # Stop & remove data
+```
+
+For detailed database setup options, see [DATABASE_SETUP.md](DATABASE_SETUP.md).
+
+---
 
 ## Team
 Nour Benzarti, Farah Marnissi, Raef Lefi, Ilyes Fatnassi, Mohamed Aziz Touhami
