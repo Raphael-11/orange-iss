@@ -11,6 +11,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import { RegisterDto, LoginDto, ChangePasswordDto } from './dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { UserRole } from '../common/enums';
 
 /**
  * Authentication service
@@ -48,7 +49,7 @@ export class AuthService {
       password: hashedPassword,
       firstName,
       lastName,
-      role: 'STUDENT', // Always set to STUDENT
+      role: UserRole.STUDENT, // Always set to STUDENT
     });
 
     await this.userRepository.save(user);
@@ -56,10 +57,10 @@ export class AuthService {
     // Generate JWT token
     const accessToken = this.generateToken(user);
 
-    // Remove password from response using object destructuring
+    // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
 
-    return { user: userWithoutPassword as User, accessToken };
+    return { user: userWithoutPassword as any as User, accessToken };
   }
 
   /**
@@ -89,10 +90,10 @@ export class AuthService {
     // Generate JWT token
     const accessToken = this.generateToken(user);
 
-    // Remove password from response using object destructuring
+    // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
 
-    return { user: userWithoutPassword as User, accessToken };
+    return { user: userWithoutPassword as any as User, accessToken };
   }
 
   /**
